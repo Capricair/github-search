@@ -1,0 +1,5 @@
+.idea
+node_modules
+_next
+bundles
+dist
