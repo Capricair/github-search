@@ -1,22 +1,23 @@
 const webpack = require("webpack");
 const config = require("./webpack.base");
-const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
+const BundleAnalyzerPlugin = require("webpack-bundle-analyzer").BundleAnalyzerPlugin;
 
-config.devtool = "#eval-cheap-module-source-map";
+// config.devtool = "#eval-cheap-module-source-map";
+config.devtool = "#inline-source-map";
 config.plugins.push(new webpack.HotModuleReplacementPlugin());
 config.plugins.push(
-    new webpack.DefinePlugin({
-        "process.env.NODE_ENV": `"development"`,
-    })
+  new webpack.DefinePlugin({
+    "process.env.NODE_ENV": `"development"`,
+  })
 );
-if (process.env.ANALYZER){
-    config.plugins.push(new BundleAnalyzerPlugin());
+if (process.env.BUNDLE_ANALYZER) {
+  config.plugins.push(new BundleAnalyzerPlugin());
 }
 config.devServer = {
-    host: "0.0.0.0",
-    port: "3000",
-    hot: true,
-    historyApiFallback: true,
+  host: "0.0.0.0",
+  port: "3000",
+  hot: true,
+  historyApiFallback: true,
 };
 
 module.exports = config;

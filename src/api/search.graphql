@@ -1,5 +1,31 @@
-query {
-    viewer{
-        login
+query repository {
+  search(type: REPOSITORY, first: 10, query: "react") {
+    pageInfo {
+      endCursor
+      hasNextPage
+      hasPreviousPage
+      startCursor
     }
+    nodes {
+      ... on Repository {
+        id
+        name
+        nameWithOwner
+        url
+        stargazerCount
+        description
+        repositoryTopics(first: 10) {
+          nodes {
+            topic {
+              name
+            }
+          }
+        }
+        primaryLanguage {
+          name
+        }
+      }
+    }
+    repositoryCount
+  }
 }

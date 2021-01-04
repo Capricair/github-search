@@ -6,6 +6,6 @@
   }
 }
 
-@function rem($px){
+@function rem($px) {
   @return $px / 1px * 0.02rem;
 }

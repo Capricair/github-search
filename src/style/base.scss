@@ -1,26 +1,29 @@
 @import "./vars";
 @import "./mixins";
 
-html{
-    font-size: 13.33333333333vw;
-    font-family: $font-family;
-    word-wrap: break-word;
-    word-break: break-all;
+html {
+  font-size: 13.33333333333vw;
+  font-family: $font-family;
+  word-wrap: break-word;
+  word-break: break-all;
 }
 
-html, body, ul{
-    margin: 0;
-    padding: 0;
+html,
+body,
+ul {
+  margin: 0;
+  padding: 0;
 }
 
-html, body{
-    -webkit-tap-highlight-color: transparent;
+html,
+body {
+  -webkit-tap-highlight-color: transparent;
 }
 
-body{
-    font-size: $font-size-normal;
-    margin: auto;
-    padding: 0;
-    line-height: $line-height;
-    background-color: #fff;
+body {
+  font-size: $font-size-normal;
+  margin: auto;
+  padding: 0;
+  line-height: $line-height;
+  background-color: #fff;
 }

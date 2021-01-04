@@ -1,19 +1,20 @@
 @import "./base";
 
-html, body{
-    max-width: 750PX;
-    margin: auto;
+html,
+body {
+  max-width: 750px;
+  margin: auto;
 }
 
-.page{
-    min-height: 100vh;
-    background-color: #fff;
-    -webkit-text-size-adjust: 100%;
-    margin: auto;
+.page {
+  min-height: 100vh;
+  background-color: #fff;
+  -webkit-text-size-adjust: 100%;
+  margin: auto;
 }
 
-body{
-    .am-list-item .am-list-line .am-list-extra{
-        font-size: 17px;
-    }
+body {
+  .am-list-item .am-list-line .am-list-extra {
+    font-size: 17px;
+  }
 }
