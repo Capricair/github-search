@@ -6,38 +6,64 @@
     padding: 20px;
 
     .search-input {
-      margin-bottom: 20px;
+      margin-bottom: 10px;
     }
 
-    .list-repository {
-      list-style: none;
-      font-size: 14px;
+    .list-history {
+      margin-bottom: 10px;
 
-      > li {
-        padding: 20px 0;
-        border-top: 1px solid #ddd;
+      .header {
+        font-size: 16px;
+      }
 
-        .title {
-          font-size: 18px;
-          color: $primary-color;
+      .no-data {
+        text-align: center;
+      }
 
-          &:hover {
-            text-decoration: underline;
-            cursor: pointer;
+      .tag {
+        color: $text-normal;
+        background-color: #eee;
+      }
+    }
+
+    .list-search-result {
+      .header {
+        font-size: 16px;
+      }
+
+      .no-data {
+        text-align: center;
+      }
+
+      .list-repository {
+        list-style: none;
+        font-size: 14px;
+
+        > li {
+          padding: 20px 0;
+          border-top: 1px solid #ddd;
+
+          .title {
+            font-size: 18px;
+
+            > a:hover {
+              text-decoration: underline;
+              cursor: pointer;
+            }
           }
-        }
 
-        .star-info {
-          font-size: 14px;
-          margin-right: 20px;
+          .star-info {
+            font-size: 14px;
+            margin-right: 20px;
 
-          > svg,
-          span {
-            vertical-align: middle;
-          }
+            > svg,
+            span {
+              vertical-align: middle;
+            }
 
-          > svg {
-            margin-right: 5px;
+            > svg {
+              margin-right: 5px;
+            }
           }
         }
       }

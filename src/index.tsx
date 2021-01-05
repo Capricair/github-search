@@ -5,20 +5,21 @@ import { BrowserRouter as Router, Route } from "react-router-dom";
 import Loading from "./components/Loading";
 import { ApolloProvider } from "@apollo/client";
 import client from "./api/client";
-var Index = lazy(function () {
-  return import("./pages/index");
-});
-var Routes = React.createElement(
-  ApolloProvider,
-  { client: client },
-  React.createElement(
-    Suspense,
-    { fallback: React.createElement(Loading, null) },
-    React.createElement(Router, null, React.createElement(Route, { path: "/", exact: true, component: Index }))
-  )
+
+const Index = lazy(() => import("./pages/index"));
+
+const Routes = (
+  <ApolloProvider client={client}>
+    <Suspense fallback={<Loading />}>
+      <Router>
+        <Route path="/" exact component={Index} />
+      </Router>
+    </Suspense>
+  </ApolloProvider>
 );
+
 ReactDOM.render(Routes, document.getElementById("app"));
+
 if (module.hot) {
   module.hot.accept();
 }
-//# sourceMappingURL=index.js.map
