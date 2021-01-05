@@ -27,3 +27,13 @@ body {
   line-height: $line-height;
   background-color: #fff;
 }
+
+@media (min-width: 751apx) {
+  html {
+    font-size: 54apx;
+
+    body {
+      font-size: 16apx;
+    }
+  }
+}
