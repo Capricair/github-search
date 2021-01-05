@@ -1,33 +1,36 @@
 import "./index.scss";
-import * as React from "react";
-// import { Link } from "react-router-dom"
+import React, { useState } from "react";
 import { useQuery } from "@apollo/client";
 import GraphQL from "../../api";
-import { Spin } from "antd";
-// @ts-ignore
 import Star from "../../components/Star";
+import { Input } from "antd";
+import debounce from "lodash/debounce";
 
 export default function Index() {
+  const [keyword, setKeyword] = useState("");
   const { loading, error, data } = useQuery(GraphQL.searchRepository, {
-    variables: { keyword: "react" },
+    variables: { keyword: keyword },
   });
+
+  const searchHandler = debounce((e) => {
+    const keyword = e.target.value;
+    setKeyword(keyword);
+  }, 500);
 
   let content = <div />;
   if (loading) {
-    content = (
-      <div className="text-center">
-        <Spin />
-      </div>
-    );
+    content = <div className="text-center">Loading...</div>;
   } else if (error) {
     content = <div className="text-center">{error}</div>;
+  } else if (data.search.nodes.length === 0) {
+    content = <div className="text-center">No Data</div>;
   } else {
     content = (
-      <ul className="list-unstyled">
+      <ul className="list-repository">
         {data.search.nodes.map((repository) => {
           return (
             <li key={repository.id}>
-              <div>{repository.nameWithOwner}</div>
+              <div className="title">{repository.nameWithOwner}</div>
               <div>{repository.description}</div>
               <div>
                 {repository.repositoryTopics.nodes.map((item) => {
@@ -40,7 +43,7 @@ export default function Index() {
                 })}
               </div>
               <div>
-                <span>
+                <span className="star-info">
                   <Star />
                   <span>{repository.stargazerCount}</span>
                 </span>
@@ -55,7 +58,12 @@ export default function Index() {
 
   return (
     <div className="page page-index">
-      <div className="page-index-container">{content}</div>
+      <div className="page-index-container">
+        <div>
+          <Input className="search-input" onInput={searchHandler} />
+        </div>
+        {content}
+      </div>
     </div>
   );
 }

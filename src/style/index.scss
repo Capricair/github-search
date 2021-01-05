@@ -1,5 +1,6 @@
 @import "./base";
 @import "./common";
+@import "~antd/dist/antd.css";
 
 html,
 body {
@@ -16,4 +17,14 @@ body {
 
 .octicon {
   vertical-align: middle;
+}
+
+.tag {
+  padding: 0 10px;
+  line-height: 22px;
+  font-size: 12px;
+  border-radius: 4px;
+  color: #0366d6;
+  background-color: #f1f8ff;
+  margin-right: 5px;
 }
