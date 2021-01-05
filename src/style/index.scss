@@ -8,6 +8,10 @@ body {
   margin: auto;
 }
 
+a {
+  color: $primary-color;
+}
+
 .page {
   min-height: 100vh;
   background-color: #fff;
