@@ -6,6 +6,8 @@ import Star from "../../components/Star";
 import { Input } from "antd";
 import debounce from "lodash/debounce";
 
+const SEARCH_INPUT_DELAY = 800;
+
 export default function Index() {
   const [history, setHistory] = useState<Array<String>>([]);
   const [getRepositories, { called, loading, data }] = useLazyQuery(GraphQL.searchRepository);
@@ -23,7 +25,7 @@ export default function Index() {
       }
       setHistory(arr);
     }
-  }, 500);
+  }, SEARCH_INPUT_DELAY);
 
   let repositoryList = [];
   let content: ReactNode = <div />;
@@ -46,7 +48,7 @@ export default function Index() {
     <div className="page page-index">
       <div className="page-index-container">
         <div>
-          <Input className="search-input" onInput={searchHandler} />
+          <Input className="search-input" onInput={searchHandler} placeholder="请输入搜索关键字" />
         </div>
         {history.length > 0 && (
           <div className="list-history">
