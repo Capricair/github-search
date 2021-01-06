@@ -1,6 +1,6 @@
 import React from "react";
 import Star from "../Star";
-import { Repository } from "../../interfaces";
+import { Repository, RepositoryTopic } from "../../interfaces";
 
 export default function RepositoryList(props) {
   const { data } = props;
@@ -16,7 +16,7 @@ export default function RepositoryList(props) {
             </div>
             <div>{repository.description}</div>
             <div>
-              {repository.repositoryTopics.nodes.map((item) => {
+              {repository.repositoryTopics.nodes.map((item: RepositoryTopic) => {
                 const topic = item.topic || {};
                 return (
                   <span key={topic.id} className="tag">
