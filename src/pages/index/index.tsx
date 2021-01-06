@@ -9,6 +9,8 @@ import { Repository } from "../../interfaces";
 
 const SEARCH_INPUT_DELAY = 800;
 
+let IsFirstRender = true;
+
 export default function Index() {
   const [history, setHistory] = useState<Array<String>>([]);
   const [getRepositories, { called, loading, data, error }] = useLazyQuery(GraphQL.searchRepository);
@@ -16,9 +18,9 @@ export default function Index() {
   const searchHandler = debounce((e) => {
     const keyword = e.target.value;
     if (keyword) {
-      // 请求数据
+      // 请求仓库数据
       getRepositories({ variables: { keyword: keyword } });
-      // 设置搜索历史
+      // 设置搜索历史，保留10个
       const arr = history.filter((item) => item !== keyword);
       arr.unshift(keyword);
       if (arr.length > 10) {
@@ -28,23 +30,22 @@ export default function Index() {
     }
   }, SEARCH_INPUT_DELAY);
 
-  let repositoryList: Array<Repository> = [];
+  let repositories: Array<Repository> = [];
   let content: ReactNode = <div />;
   if (called) {
+    IsFirstRender = false;
     if (loading) {
       content = <div className="text-center">Loading...</div>;
     } else if (error) {
       content = <div className="text-center">服务器开小差了</div>;
     } else if (data) {
-      repositoryList = data.search.nodes;
-      if (repositoryList.length === 0) {
+      repositories = data.search.nodes;
+      if (repositories.length === 0) {
         content = <NoData />;
       } else {
-        content = <RepositoryList data={repositoryList} />;
+        content = <RepositoryList data={repositories} />;
       }
     }
-  } else {
-    content = <NoData />;
   }
 
   return (
@@ -65,10 +66,12 @@ export default function Index() {
             </div>
           </div>
         )}
-        <div className="list-search-result">
-          <div className="header">搜索结果</div>
-          <div className="body">{content}</div>
-        </div>
+        {!IsFirstRender && (
+          <div className="list-search-result">
+            <div className="header">搜索结果</div>
+            <div className="body">{content}</div>
+          </div>
+        )}
       </div>
     </div>
   );

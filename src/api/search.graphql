@@ -17,6 +17,7 @@ query repository {
         repositoryTopics(first: 10) {
           nodes {
             topic {
+              id
               name
             }
           }

@@ -1,11 +1,12 @@
 import React from "react";
 import Star from "../Star";
+import { Repository } from "../../interfaces";
 
 export default function RepositoryList(props) {
   const { data } = props;
   return (
     <ul className="list-repository">
-      {data.map((repository) => {
+      {data.map((repository: Repository) => {
         return (
           <li key={repository.id}>
             <div className="title">
